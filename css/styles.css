@@ -535,7 +535,7 @@ p { color: var(--text-secondary); margin-bottom: 1rem; }
 /* ===== PARTNERS ===== */
 .partners-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.5rem;
 }
 
@@ -543,31 +543,109 @@ p { color: var(--text-secondary); margin-bottom: 1rem; }
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1.75rem;
+  padding: 2rem 1.5rem 1.75rem;
   text-align: center;
   transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .partner-card:hover {
   border-color: var(--border-hover);
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-gold);
 }
 
-.partner-icon {
-  font-size: 2rem;
-  margin-bottom: 0.75rem;
+/* Person headshot — circular */
+.partner-photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  margin: 0 auto 1rem;
+  border: 2px solid var(--border);
+  display: block;
+  transition: var(--transition);
+}
+
+.partner-card:hover .partner-photo {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(196, 146, 42, 0.12);
+}
+
+/* Organisation logo — contained box */
+.partner-logo-wrap {
+  width: 100%;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.partner-logo {
+  max-height: 80px;
+  max-width: 140px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  transition: var(--transition);
+}
+
+.partner-card:hover .partner-logo {
+  filter: drop-shadow(0 0 8px rgba(196, 146, 42, 0.35));
+}
+
+/* She Plays — white silhouette needs light bg */
+.partner-logo.invert-bg {
+  background: rgba(255,255,255,0.06);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem;
+  max-width: 120px;
+}
+
+/* Placeholder for partners without an image */
+.partner-placeholder {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: rgba(196, 146, 42, 0.1);
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  margin: 0 auto 1rem;
+  transition: var(--transition);
+}
+
+.partner-card:hover .partner-placeholder {
+  border-color: var(--gold);
+  background: rgba(196, 146, 42, 0.18);
 }
 
 .partner-card h4 {
   color: var(--gold);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.2rem;
   font-size: 0.95rem;
+}
+
+.partner-role {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem !important;
 }
 
 .partner-card p {
   font-size: 0.82rem;
   color: var(--text-muted);
   margin: 0;
+  line-height: 1.5;
 }
 
 /* ===== CTA SECTION ===== */
