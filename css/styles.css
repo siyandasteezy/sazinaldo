@@ -598,12 +598,11 @@ p { color: var(--text-secondary); margin-bottom: 1rem; }
   filter: drop-shadow(0 0 8px rgba(196, 146, 42, 0.35));
 }
 
-/* She Plays — white silhouette needs light bg */
-.partner-logo.invert-bg {
-  background: rgba(255,255,255,0.06);
+/* Logos with white/light backgrounds — add a soft white pill behind them */
+.partner-logo.logo-light-bg {
+  background: #fff;
   border-radius: var(--radius-sm);
-  padding: 0.5rem;
-  max-width: 120px;
+  padding: 0.5rem 0.75rem;
 }
 
 /* Placeholder for partners without an image */
