@@ -1,0 +1,8 @@
+# Extra protection for admin folder
+Options -Indexes
+
+# Only allow PHP files, CSS, and direct admin assets
+<FilesMatch "\.php$">
+    Order allow,deny
+    Allow from all
+</FilesMatch>
