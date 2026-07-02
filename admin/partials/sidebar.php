@@ -25,6 +25,9 @@ function sidebarLink(string $href, string $icon, string $label, string $current)
     <div class="sidebar-section" style="margin-top:1rem;">Site</div>
     <?= sidebarLink('/',                      '🌐', 'View Website', '') ?>
     <?= sidebarLink('/players.php',           '👀', 'Player Directory', '') ?>
+
+    <div class="sidebar-section" style="margin-top:1rem;">Help</div>
+    <?= sidebarLink('/admin/guide.php',       '📖', 'Admin Guide',  $page) ?>
   </nav>
 
   <div class="sidebar-footer">
