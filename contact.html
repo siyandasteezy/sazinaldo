@@ -153,8 +153,10 @@
           <p>Fill in the form below and we'll get back to you as soon as possible.</p>
 
           <form id="contact-form" method="POST" novalidate>
-            <!-- Honeypot spam protection -->
-            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+            <!-- Honeypot spam protection (off-screen, not display:none so bots fill it) -->
+            <div style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+              <input type="text" name="_gotcha" tabindex="-1" autocomplete="nope" value="" />
+            </div>
 
             <div class="form-row">
               <div class="form-group">
