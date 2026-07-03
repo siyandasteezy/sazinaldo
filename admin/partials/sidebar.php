@@ -1,10 +1,17 @@
 <?php
 $page = basename($_SERVER['PHP_SELF'], '.php');
-function sidebarLink(string $href, string $icon, string $label, string $current): string {
+function sidebarLink(string $href, string $icon, string $label, string $current, string $badge = ''): string {
     $base   = basename($href, '.php');
     $active = $base === $current ? ' active' : '';
-    return '<a href="' . $href . '" class="sidebar-link' . $active . '">'
-         . '<span class="icon">' . $icon . '</span>' . htmlspecialchars($label) . '</a>';
+    $badgeHtml = $badge ? ' <span style="background:var(--gold);color:#000;border-radius:50px;padding:0.05rem 0.45rem;font-size:0.65rem;font-weight:700;margin-left:auto;">' . htmlspecialchars($badge) . '</span>' : '';
+    return '<a href="' . $href . '" class="sidebar-link' . $active . '" style="' . ($badge ? 'justify-content:flex-start;gap:0.6rem;' : '') . '">'
+         . '<span class="icon">' . $icon . '</span>' . htmlspecialchars($label) . $badgeHtml . '</a>';
+}
+// Unread message count for badge
+try {
+    $unreadCount = getDB()->query("SELECT COUNT(*) FROM contact_submissions WHERE is_read = 0")->fetchColumn();
+} catch (Throwable) {
+    $unreadCount = 0;
 }
 ?>
 <aside class="sidebar">
@@ -21,6 +28,7 @@ function sidebarLink(string $href, string $icon, string $label, string $current)
     <?= sidebarLink('/admin/index.php',       '📊', 'Dashboard',   $page) ?>
     <?= sidebarLink('/admin/players.php',     '⚽', 'Players',     $page) ?>
     <?= sidebarLink('/admin/add-player.php',  '➕', 'Add Player',  $page) ?>
+    <?= sidebarLink('/admin/messages.php',    '✉️', 'Messages',    $page, $unreadCount > 0 ? (string)$unreadCount : '') ?>
 
     <div class="sidebar-section" style="margin-top:1rem;">Site</div>
     <?= sidebarLink('/',                      '🌐', 'View Website', '') ?>

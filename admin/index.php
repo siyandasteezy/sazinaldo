@@ -10,6 +10,11 @@ $stats = [
     'placed'   => $db->query("SELECT COUNT(*) FROM players WHERE status = 'Placed'")->fetchColumn(),
     'featured' => $db->query("SELECT COUNT(*) FROM players WHERE is_featured = 1")->fetchColumn(),
 ];
+try {
+    $unreadMessages = $db->query("SELECT COUNT(*) FROM contact_submissions WHERE is_read = 0")->fetchColumn();
+} catch (Throwable) {
+    $unreadMessages = null;
+}
 
 $recent = $db->query(
     "SELECT id, first_name, last_name, primary_position, nationality, status, photo, created_at
@@ -78,6 +83,15 @@ $success = flash('success');
             <div class="stat-lbl">Featured</div>
           </div>
         </div>
+        <?php if ($unreadMessages !== null): ?>
+        <div class="stat-card" style="cursor:pointer;" onclick="location.href='/admin/messages.php?filter=unread'">
+          <div class="stat-icon" style="background:rgba(239,68,68,0.1);color:#ef4444;">✉️</div>
+          <div>
+            <div class="stat-num"><?= $unreadMessages ?></div>
+            <div class="stat-lbl">Unread Messages</div>
+          </div>
+        </div>
+        <?php endif; ?>
       </div>
 
       <div class="table-wrap">
