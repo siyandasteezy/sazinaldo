@@ -1305,25 +1305,45 @@ footer {
   .vision-cards { grid-template-columns: 1fr; }
 }
 
-/* ── Hero image: fully contained on mobile ── */
+/* ── Hero: stacked layout on mobile (image on top, content below) ── */
 @media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    min-height: unset;
+    align-items: stretch;
+    padding-bottom: 3rem;
+  }
+
+  /* Pull bg out of absolute positioning so it takes natural height */
   .hero-bg {
+    position: relative;
+    top: 0; left: 0; right: 0; bottom: 0;
     background: var(--bg-primary);
+    flex-shrink: 0;
   }
+
+  /* Let the image display at its natural aspect ratio */
   .hero-bg img {
-    object-fit: contain;
-    object-position: top center;
+    position: relative;
+    width: 100%;
+    height: auto;
+    object-fit: unset;
+    display: block;
   }
-  .hero-overlay {
-    background: linear-gradient(
-      180deg,
-      rgba(8,12,22,0.15) 0%,
-      rgba(8,12,22,0.25) 40%,
-      rgba(8,12,22,0.88) 70%,
-      rgba(8,12,22,0.97) 100%
-    );
-  }
+
+  /* No overlay needed — image and content are now separate */
+  .hero-overlay { display: none; }
+
+  /* Content sits below the image on the dark page background */
   .hero-content {
+    position: relative;
+    z-index: 1;
     padding-top: 2rem;
+    max-width: 100%;
   }
+
+  .hero h1 { font-size: clamp(2rem, 8vw, 3rem); }
+  .hero p  { font-size: 1rem; }
+
+  .hero-scroll { display: none; }
 }
