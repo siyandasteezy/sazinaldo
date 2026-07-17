@@ -1283,3 +1283,47 @@ footer {
   .contact-form-wrap { padding: 1.5rem; }
   .cta-actions { flex-direction: column; align-items: center; }
 }
+
+/* ── Vision section (Fight to Play / SDG / PEA / Grants) ── */
+.vision-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.vision-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .vision-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+
+@media (max-width: 480px) {
+  .vision-cards { grid-template-columns: 1fr; }
+}
+
+/* ── Hero image: fully contained on mobile ── */
+@media (max-width: 768px) {
+  .hero-bg {
+    background: var(--bg-primary);
+  }
+  .hero-bg img {
+    object-fit: contain;
+    object-position: top center;
+  }
+  .hero-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(8,12,22,0.15) 0%,
+      rgba(8,12,22,0.25) 40%,
+      rgba(8,12,22,0.88) 70%,
+      rgba(8,12,22,0.97) 100%
+    );
+  }
+  .hero-content {
+    padding-top: 2rem;
+  }
+}
